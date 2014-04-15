@@ -1,0 +1,36 @@
+# Create your new plugin. Here is a simple example
+# create the file /opt/nagios/libexec/check_myself with the following content
+
+#!/bin/bash
+echo "Everything is OK"
+exit 0
+
+# now make this file executable using
+# chod +x /opt/nagios/libexec/check_myself
+
+# now add the following to the /opt/nagios/etc/objects/commands.cfg
+
+define command {
+  command_name check_myself
+  command_line $USER1$/check_myself
+}
+
+# now create a host in /opt/nagios/etc/objects/hosts if you don't already have one
+
+define host {
+	use		linux-server
+	host_name	host1
+	alias		Host One
+	address		localhost
+}
+
+# finally associate a service with this host
+
+define service {
+	use 			generic-service
+	host_name		host1
+	service_description	Checking Myself
+	check_command		check_myself
+}
+
+# after this restart your nagios server
