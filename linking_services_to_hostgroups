@@ -1,0 +1,42 @@
+# First create a hostgroup in /opt/nagos/etc/objects/hostgroups.cfg
+
+define hostgroup {
+	hostgroup_name	Linux
+	alias		All Linux Servers
+}
+
+# now associate some hosts with this hostgroup
+
+define host {
+	use		linux-server
+	host_name	host1
+	alias		Host One
+	hostgroups	Linux
+	address		localhost
+}
+
+define host {
+        use             linux-server
+        host_name       host2
+        alias           Host Two
+        hostgroups      Linux
+        address         127.0.0.1
+}
+
+# now create some services which are executed against any host belonging to the new hostgroup you just created
+
+define service {
+	use			generic-service
+	hostgroup_name		Linux
+	service_description	PING
+	check_command		check_ping!100.0,20%!500.0,60%
+}
+
+define service {
+        use                     generic-service
+        hostgroup_name          Linux
+        service_description     Checking Myself
+        check_command           check_myself
+}
+
+# after you restart your nagios server you should see the above to services being executed on host1 and host2
