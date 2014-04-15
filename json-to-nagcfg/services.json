@@ -1,0 +1,31 @@
+{
+"host1": [
+{
+"use": "local-service",
+"host_name": "host1",
+"service_description": "PING",
+"check_command": "check_ping!100.0,20%!500.0,60%"
+},
+{
+"use": "local-service",
+"host_name": "host1",
+"service_description": "Checking Myself",
+"check_command": "check_myself"
+}
+],
+"host2": [
+{
+"use": "local-service",
+"host_name": "host2",
+"service_description": "PING",
+"check_command": "check_ping!100.0,20%!500.0,60%"
+},
+{
+"use": "local-service",
+"host_name": "host2",
+"service_description": "Checking Myself",
+"check_command": "check_myself"
+}
+]
+
+}

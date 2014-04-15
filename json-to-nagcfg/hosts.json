@@ -1,0 +1,21 @@
+{
+"hosts": [
+{
+    "host_name":"host1",
+    "use":"linux-server",
+    "alias":"Host One",
+    "address":"127.0.0.1",
+    "hostgroups":"linux",
+    "contact_groups":"linux_admins"
+},
+{
+    "host_name":"host2",
+    "use":"linux-server",
+    "alias":"Host Two",
+    "address":"127.0.0.1",
+    "hostgroups":"linux",
+    "contact_groups":"linux_admins"
+}
+
+]
+}
