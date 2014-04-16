@@ -1,0 +1,22 @@
+# This is to get you set up to use the check_by_ssh plugin
+
+# First you need to generate ssh keys, as another user besides root run:
+
+ssh-keygen -t rsa
+
+# now copy this key to a remote host using
+# the remote host will have to have /home/<user>/.ssh directory
+# if not log in and create it
+
+cat .ssh/id-rsa.pub | ssh <remote-user>@<remote-host-address> 'cat >> .ssh/authorized_keys'
+
+# now try ssh to the reomte server as usual
+# you will be asked for a password, but any future sshing to the remote should happen without
+# you needing to enter a pass word
+
+# with the above in place you can now run the following check_by_ssh command
+
+check_by_ssy -H <remote-host-address> -n lh -s c1 C '<command you want to execute on the remote machine>'
+
+# this should execute on the remote machine without asking you for a password
+
